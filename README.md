@@ -1,12 +1,22 @@
 # EPUB Validation GitHub Action
 
-This GitHub Action automates the validation of EPUB files using the w3c/epubcheck tool, seamlessly integrating this process into your CI/CD workflows.
+This GitHub Action automates EPUB file validation.
+It uses the w3c/epubcheck tool. 
+This integration streamlines your CI/CD workflows.
 
 ## Features
 
-- **Automated EPUB Validation:** Automatically validate EPUB files against the standards defined by the w3c/epubcheck.
-- **CI/CD Integration:** Easily integrate EPUB validation into your existing GitHub workflows.
-- **Customizable:** Customize the validation process to suit your specific project needs.
+- **Automated EPUB Validation:**
+  - Validate EPUB files automatically.
+  - Follows w3c/epubcheck standards.
+
+- **CI/CD Integration:**
+  - Integrates easily with GitHub workflows.
+  - Streamlines EPUB validation.
+
+- **Customizable:**
+  - Tailor the validation process.
+  - Suits specific project needs.
 
 ## Getting Started
 
