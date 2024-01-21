@@ -1,4 +1,4 @@
-# EPUB Validation GitHub Action
+# [WIP] EPUB Validation GitHub Action
 
 This GitHub Action automates EPUB file validation.
 It uses the w3c/epubcheck tool.
@@ -33,8 +33,8 @@ Follow these steps to use this GitHub Action in your project.
 
    In your repository, create a `.github/workflows` directory if it doesn't exist.
 
-   - Add a new YAML file in this directory. 
-   - For example, name it `epubcheck.yml`. 
+   - Add a new YAML file in this directory.
+   - For example, name it `epubcheck.yml`.
    - Use the following content:
 
    ```yaml
