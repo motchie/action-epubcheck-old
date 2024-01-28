@@ -1,21 +1,76 @@
-name: Hello, World!
-description: Greet someone and record the time
-author: GitHub Actions
+name: 'EPUBCheck Action'
+description: 'Validates EPUB files using epubcheck'
+author: Toru Motchie MOCHIDA
 
-# Define your inputs here.
 inputs:
-  who-to-greet:
-    description: Who to greet
-    required: true
-    default: World
-
-# Define your outputs here.
-outputs:
-  time:
-    description: The time we greeted you
+  mode:
+    description: 'File checking mode (e.g., "exp /path/to/epub")'
+    required: false
+  save:
+    description: 'Create an EPUB package after checking an expanded EPUB directory'
+    required: false
+  profile:
+    description: 'Checking profile to use (e.g., "default", "edupub")'
+    required: false
+  output:
+    description: 'Path to write an XML report'
+    required: false
+  json:
+    description: 'Path to write a JSON report'
+    required: false
+  xmp:
+    description: 'Path to write an XMP report'
+    required: false
+  failonwarnings:
+    description: 'Return 1 if either warnings or errors are present'
+    required: false
+    default: 'false'
+  quiet:
+    description: 'Print nothing on the output stream'
+    required: false
+    default: 'false'
+  fatal:
+    description: 'Set reported severity level to fatal'
+    required: false
+    default: 'false'
+  error:
+    description: 'Set reported severity level to error'
+    required: false
+    default: 'false'
+  warn:
+    description: 'Set reported severity level to warning'
+    required: false
+    default: 'false'
+  usage:
+    description: 'Set reported severity level to usage'
+    required: false
+    default: 'false'
+  locale:
+    description: 'Output messages in the given locale'
+    required: false
+  listChecks:
+    description: 'Write all known message codes and severity levels to file'
+    required: false
+  customMessages:
+    description: 'Override the message severity levels with the levels defined in file'
+    required: false
 
 runs:
-  using: docker
-  image: Dockerfile
+  using: 'docker'
+  image: 'Dockerfile'
   env:
-    INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
+    EPUBCHECK_MODE: ${{ inputs.mode }}
+    EPUBCHECK_SAVE: ${{ inputs.save }}
+    EPUBCHECK_PROFILE: ${{ inputs.profile }}
+    EPUBCHECK_OUTPUT: ${{ inputs.output }}
+    EPUBCHECK_JSON: ${{ inputs.json }}
+    EPUBCHECK_XMP: ${{ inputs.xmp }}
+    EPUBCHECK_FAILONWARNINGS: ${{ inputs.failonwarnings }}
+    EPUBCHECK_QUIET: ${{ inputs.quiet }}
+    EPUBCHECK_FATAL: ${{ inputs.fatal }}
+    EPUBCHECK_ERROR: ${{ inputs.error }}
+    EPUBCHECK_WARN: ${{ inputs.warn }}
+    EPUBCHECK_USAGE: ${{ inputs.usage }}
+    EPUBCHECK_LOCALE: ${{ inputs.locale }}
+    EPUBCHECK_LISTCHECKS: ${{ inputs.listChecks }}
+    EPUBCHECK_CUSTOMMESSAGES: ${{ inputs.customMessages }}

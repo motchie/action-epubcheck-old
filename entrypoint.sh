@@ -1,12 +1,36 @@
 #!/bin/sh -l
 
-# Use INPUT_<INPUT_NAME> to get the value of an input
-GREETING="Hello, $INPUT_WHO_TO_GREET!"
+# Set default EPUBCHECK_DIR
+EPUBCHECK_DIR="/usr/src/app/epubcheck"
 
-# Use workflow commands to do things like set debug messages
-echo "::notice file=entrypoint.sh,line=7::$GREETING"
+# Run epubcheck with the provided options from GitHub Actions environment variable
+EPUBCHECK_CMD="java -jar ${EPUBCHECK_DIR}/epubcheck-${EPUBCHECK_VERSION}/epubcheck.jar"
 
-# Write outputs to the $GITHUB_OUTPUT file
-echo "greeting=$GREETING" >> "$GITHUB_OUTPUT"
+# Function to add an option
+add_option() {
+  local option=$1
+  local value=$2
+  if [ -n "$value" ]; then
+    EPUBCHECK_CMD="${EPUBCHECK_CMD} ${option} ${value}"
+  fi
+}
 
-exit 0
+# Add options here
+add_option "--mode" "$EPUBCHECK_MODE"
+add_option "--save" "$EPUBCHECK_SAVE"
+add_option "--profile" "$EPUBCHECK_PROFILE"
+add_option "--output" "$EPUBCHECK_OUTPUT"
+add_option "--json" "$EPUBCHECK_JSON"
+add_option "--xmp" "$EPUBCHECK_XMP"
+add_option "--failonwarnings" "$EPUBCHECK_FAILONWARNINGS"
+add_option "--quiet" "$EPUBCHECK_QUIET"
+add_option "--fatal" "$EPUBCHECK_FATAL"
+add_option "--error" "$EPUBCHECK_ERROR"
+add_option "--warn" "$EPUBCHECK_WARN"
+add_option "--usage" "$EPUBCHECK_USAGE"
+add_option "--locale" "$EPUBCHECK_LOCALE"
+add_option "--listChecks" "$EPUBCHECK_LISTCHECKS"
+add_option "--customMessages" "$EPUBCHECK_CUSTOMMESSAGES"
+
+# Execute the command
+eval $EPUBCHECK_CMD

@@ -1,11 +1,26 @@
-# Set the base image to use for subsequent instructions
-FROM alpine:3.19
+# Use an official Alpine Linux as a base image
+FROM alpine:latest
 
-# Set the working directory inside the container
-WORKDIR /usr/src
+# Set environment variables for epubcheck version
+ENV EPUBCHECK_VERSION="5.1.0"
+ENV EPUBCHECK_URL="https://github.com/w3c/epubcheck/releases/download/v${EPUBCHECK_VERSION}/epubcheck-${EPUBCHECK_VERSION}.zip"
 
-# Copy any source file(s) required for the action
-COPY entrypoint.sh .
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-# Configure the container to be run as an executable
-ENTRYPOINT ["/usr/src/entrypoint.sh"]
+# Install required packages
+RUN apk add --no-cache curl openjdk11-jre unzip
+
+# Download and extract the latest epubcheck
+RUN curl -L -o epubcheck.zip $EPUBCHECK_URL \
+    && unzip epubcheck.zip -d epubcheck \
+    && rm epubcheck.zip
+
+# Copy the local script to the container's workspace
+COPY entrypoint.sh /usr/src/app/entrypoint.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /usr/src/app/entrypoint.sh
+
+# Define the script to run when the container starts
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
