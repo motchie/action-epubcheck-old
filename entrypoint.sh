@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash -l
 
 # Set default EPUBCHECK_DIR
 EPUBCHECK_DIR="/usr/src/app/epubcheck"
@@ -21,7 +21,7 @@ add_option "--save" "$EPUBCHECK_SAVE"
 add_option "--profile" "$EPUBCHECK_PROFILE"
 add_option "--output" "$EPUBCHECK_OUTPUT"
 add_option "--json" "$EPUBCHECK_JSON"
-add_option "--xmp" "$EPUBCHECK_XMP"
+
 add_option "--failonwarnings" "$EPUBCHECK_FAILONWARNINGS"
 add_option "--quiet" "$EPUBCHECK_QUIET"
 add_option "--fatal" "$EPUBCHECK_FATAL"
