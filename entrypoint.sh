@@ -8,8 +8,8 @@ EPUBCHECK_CMD="java -jar ${EPUBCHECK_DIR}/epubcheck-${EPUBCHECK_VERSION}/epubche
 
 # Function to add an option
 add_option() {
-  local option=$1
-  local value=$2
+  local option="$1"
+  local value="$2"
   if [ -n "$value" ]; then
     EPUBCHECK_CMD="${EPUBCHECK_CMD} ${option} ${value}"
   fi
@@ -33,4 +33,4 @@ add_option "--listChecks" "$EPUBCHECK_LISTCHECKS"
 add_option "--customMessages" "$EPUBCHECK_CUSTOMMESSAGES"
 
 # Execute the command
-eval $EPUBCHECK_CMD
+eval "$EPUBCHECK_CMD"
