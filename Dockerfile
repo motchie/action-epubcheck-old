@@ -1,5 +1,5 @@
 # Use an official Alpine Linux as a base image
-FROM alpine:3.19.1
+FROM alpine:3.20.1
 
 # Set environment variables for epubcheck version
 ENV EPUBCHECK_VERSION="5.1.0"
